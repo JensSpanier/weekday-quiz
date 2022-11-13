@@ -2,8 +2,9 @@
 
 What day of the week was this date? Take a quiz with this HTML file.
 
-- You can download this file and open it with a browser to take the quiz
-- Or you can selfhost this file to share it with other people
+- You can open the quize [here](https://jensspanier.github.io/weekday-quiz/)
+- Or you can download [`index.html`](index.html) and open it with a browser to take the quiz
+- Or you can selfhost [`index.html`](index.html) to share it with other people
 
 ## Settings
 
