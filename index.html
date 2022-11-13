@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Wochentag bestimmen</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous" />
+</head>
+
+<body>
+  <div class="container">
+    <h1 class="text-center">Wochentag bestimmen</h1>
+    <h1 class="display-1 text-center" id="date"></h1>
+    <div class="d-grid gap-2">
+      <button class="btn btn-outline-dark weekday" data-day="1" type="button">
+        Montag
+      </button>
+      <button class="btn btn-outline-dark weekday" data-day="2" type="button">
+        Dienstag
+      </button>
+      <button class="btn btn-outline-dark weekday" data-day="3" type="button">
+        Mittwoch
+      </button>
+      <button class="btn btn-outline-dark weekday" data-day="4" type="button">
+        Donnerstag
+      </button>
+      <button class="btn btn-outline-dark weekday" data-day="5" type="button">
+        Freitag
+      </button>
+      <button class="btn btn-outline-dark weekday" data-day="6" type="button">
+        Samstag
+      </button>
+      <button class="btn btn-outline-dark weekday" data-day="0" type="button">
+        Sonntag
+      </button>
+    </div>
+  </div>
+  <script>
+    const settings = {
+      startDate: new Date('1950-01-01'),
+      endDate: new Date('2050-12-31'),
+      dateOptions: {
+        locales: 'de-DE',
+        options: {
+          day: '2-digit',
+          month: '2-digit',
+          year: 'numeric'
+        }
+      }
+    };
+
+    const dateElement = document.getElementById('date');
+    const weekdayElements = document.getElementsByClassName("weekday");
+
+    for (let i = 0; i < weekdayElements.length; i++) {
+      const weekdayElement = weekdayElements[i];
+      weekdayElement.onclick = guessDay;
+    }
+
+    let date;
+
+    createNewDate();
+
+    function createNewDate() {
+      date = new Date(
+        settings.startDate.getTime() +
+        Math.random() *
+        (settings.endDate.getTime() - settings.startDate.getTime())
+      );
+      dateElement.innerText = date.toLocaleDateString(
+        settings.dateOptions.locales,
+        settings.dateOptions.options
+      );
+    }
+
+    function guessDay(event) {
+      const button = event.target;
+      const day = button.dataset.day;
+      const dayFound = date.getDay() == day;
+      button.classList.remove('btn-outline-dark');
+      setTimeout(() => {
+        button.classList.remove('btn-danger', 'btn-success');
+        button.classList.add('btn-outline-dark');
+        if (dayFound)
+          createNewDate();
+      }, 1000);
+      if (!dayFound) {
+        button.classList.add('btn-danger');
+        return;
+      }
+      button.classList.add('btn-success');
+    }
+  </script>
+</body>
+
+</html>
