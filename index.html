@@ -83,6 +83,7 @@
       setTimeout(() => {
         button.classList.remove('btn-danger', 'btn-success');
         button.classList.add('btn-outline-dark');
+        button.blur();
         if (dayFound)
           createNewDate();
       }, 1000);
