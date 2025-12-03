@@ -83,7 +83,7 @@
       setTimeout(() => {
         button.classList.remove('btn-danger', 'btn-success');
         button.classList.add('btn-outline-dark');
-        button.blur();
+        removeFocus();
         if (dayFound)
           createNewDate();
       }, 1000);
@@ -92,6 +92,17 @@
         return;
       }
       button.classList.add('btn-success');
+    }
+
+    function removeFocus() {
+      const tmp = document.createElement('button');
+      tmp.tabIndex = -1;
+      tmp.style.position = 'fixed';
+      tmp.style.opacity = '0';
+      document.body.appendChild(tmp);
+      tmp.focus();
+      tmp.blur();
+      tmp.remove();
     }
   </script>
 </body>
