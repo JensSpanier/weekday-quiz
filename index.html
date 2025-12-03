@@ -54,8 +54,7 @@
     const dateElement = document.getElementById('date');
     const weekdayElements = document.getElementsByClassName("weekday");
 
-    for (let i = 0; i < weekdayElements.length; i++) {
-      const weekdayElement = weekdayElements[i];
+    for (const weekdayElement of weekdayElements) {
       weekdayElement.onclick = guessDay;
     }
 
